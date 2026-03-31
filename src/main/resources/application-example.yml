@@ -1,0 +1,22 @@
+kafka:
+  topic:
+    <topic-name>: <topic-name>
+
+spring:
+  application:
+    name: <service-name>
+  kafka:
+    bootstrap-servers: <server-uri>
+    consumer:
+      group-id: ${spring.application.name}
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: your-username@gmail.com
+    password: iqwlosvfjriscole //without space
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
