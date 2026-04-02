@@ -1,19 +1,25 @@
 package com.shashank.notification_service.NotificationCRUD.NotificationDecorators;
 
 import com.shashank.notification_service.DTO.NotiMessageDto;
-import com.shashank.notification_service.NotificationFactory.NotificationMessageFactory.INotificationMessageFactory;
+import com.shashank.notification_service.NotificationCRUD.INotification;
+
+import java.time.LocalDateTime;
 
 public class TimestampNotification implements INotificationDecorator {
 
-    private final NotiMessageDto message;
-    private final INotificationMessageFactory iNotificationMessageFactory;
+    private final INotification simpleNotification;
 
-    public TimestampNotification(String text, INotificationMessageFactory iNotificationMessageFactory) {
-        this.iNotificationMessageFactory = iNotificationMessageFactory;
-        this.message = iNotificationMessageFactory.getNotificationMessage(text);
+    public TimestampNotification(INotification simpleNotification) {
+        this.simpleNotification = simpleNotification;
     }
+
     @Override
     public NotiMessageDto getContent() {
-        return message;
+        NotiMessageDto original = simpleNotification.getContent();
+
+        NotiMessageDto copy = new NotiMessageDto(original.getText());
+        copy.setCreatedAt(LocalDateTime.now());
+
+        return copy;
     }
 }

@@ -14,10 +14,13 @@ public class EmailStrategy implements INotificationStrategy {
     private final EmailService emailService;
 
     @Override
-    @KafkaListener(topics = "notification")
+    @KafkaListener(topics = "notification", groupId = "notification-service")
     public void sendNotification(NotificationEvent event) {
-        log.info("User received - {}" , event.getName());
-        emailService.sendSimpleEmail(event.getEmail(), event.getText());
+        try{
+            emailService.sendSimpleEmail(event.getEmail(), event.getText());
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
     }
     //Above method consumes kafka topic
 }

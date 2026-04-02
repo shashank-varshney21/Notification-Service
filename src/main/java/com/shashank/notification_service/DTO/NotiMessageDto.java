@@ -2,11 +2,15 @@ package com.shashank.notification_service.DTO;
 
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class NotiMessageDto {
     @Id
     private Long id;

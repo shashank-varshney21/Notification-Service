@@ -6,9 +6,11 @@ import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "Observers")
@@ -18,7 +20,7 @@ public class Observer {
     private Long id;
     private String name;
     @Email
-    private String Email;
+    private String email;
     @Pattern(regexp = "^[0-9]{10}$", message = "Phone number must be exactly 10 digits")
-    private Long phone;
+    private String phone;
 }

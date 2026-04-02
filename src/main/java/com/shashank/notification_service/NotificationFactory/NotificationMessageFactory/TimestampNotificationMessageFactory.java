@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
-@Component
+@Component("TimestampNotificationMessageFactory")
 public class TimestampNotificationMessageFactory implements INotificationMessageFactory {
     @Override
     public NotiMessageDto getNotificationMessage(String text) {

@@ -4,7 +4,7 @@ import com.shashank.notification_service.DTO.NotiMessageDto;
 import com.shashank.notification_service.NotificationFactory.INotificationFactory;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("SimpleNotificationMessageFactory")
 public class SimpleNotificationMessageFactory implements INotificationMessageFactory {
 
     @Override

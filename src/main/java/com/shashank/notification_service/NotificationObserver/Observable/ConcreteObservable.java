@@ -44,7 +44,11 @@ public class ConcreteObservable implements IObservable{
         List<Observer> list = observerRepository.findAll();
         for (Observer o : list) {
             NotificationEngine notificationEngine = factory.create(this, o.getName(), o.getEmail(), o.getPhone(), notification);
-            notificationEngine.update();
+            try{
+                notificationEngine.update();
+            }catch(Exception e){
+                e.printStackTrace();
+            }
         }
 //        return ResponseEntity.status(HttpStatus.OK).body("Observers Notified Successfully");
     }

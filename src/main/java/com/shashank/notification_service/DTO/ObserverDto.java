@@ -9,5 +9,5 @@ public class ObserverDto {
     private Long id;
     private String name;
     private String Email;
-    private Long phone;
+    private String phone;
 }

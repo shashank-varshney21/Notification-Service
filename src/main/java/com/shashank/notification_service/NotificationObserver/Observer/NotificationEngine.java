@@ -11,13 +11,13 @@ public class NotificationEngine implements IObserver{
 
     private final String name;
     private final String email;
-    private final Long phone;
+    private final String phone;
     private final INotification notification;
 
     private final KafkaTemplate<Long, NotificationEvent> kafkaTemplate;
     private final String kafkaTopic;
 
-    public NotificationEngine(ConcreteObservable concreteObservable, String name, String email, Long phone, INotification notification, KafkaTemplate<Long, NotificationEvent> kafkaTemplate, String kafkaTopic) {
+    public NotificationEngine(ConcreteObservable concreteObservable, String name, String email, String phone, INotification notification, KafkaTemplate<Long, NotificationEvent> kafkaTemplate, String kafkaTopic) {
         this.concreteObservable = concreteObservable;
         this.name = name;
         this.email = email;
@@ -43,8 +43,18 @@ public class NotificationEngine implements IObserver{
 
         //Pushing Notification Event as a new record in kafka topic.
 
-        kafkaTemplate.send(kafkaTopic, notification.getContent().getId(), notificationEvent);
-
+        try{
+            kafkaTemplate.send(kafkaTopic, notification.getContent().getId(), notificationEvent)
+                    .whenComplete((result, ex) -> {
+                        if (ex != null) {
+                            System.out.println("Kafka send failed: " + ex.getMessage());
+                        } else {
+                            System.out.println("Message sent successfully");
+                        }
+                    });
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
 //        return ResponseEntity.status(HttpStatus.OK).body("Message Queued");
     }
 }

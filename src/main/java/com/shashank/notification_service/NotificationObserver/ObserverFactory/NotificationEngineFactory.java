@@ -23,7 +23,7 @@ public class NotificationEngineFactory implements IObserverFactory {
     public NotificationEngine create(ConcreteObservable observable,
                                      String name,
                                      String email,
-                                     Long phone,
+                                     String phone,
                                      INotification notification) {
 
         return new NotificationEngine(

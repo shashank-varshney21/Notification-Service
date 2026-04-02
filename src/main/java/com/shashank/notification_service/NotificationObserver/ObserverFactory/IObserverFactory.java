@@ -6,5 +6,5 @@ import com.shashank.notification_service.NotificationObserver.Observer.Notificat
 import org.springframework.stereotype.Component;
 
 public interface IObserverFactory {
-    NotificationEngine create(ConcreteObservable observable, String name, String email, Long phone, INotification notification);
+    NotificationEngine create(ConcreteObservable observable, String name, String email, String phone, INotification notification);
 }
