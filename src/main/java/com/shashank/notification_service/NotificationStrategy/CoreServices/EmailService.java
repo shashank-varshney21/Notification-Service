@@ -1,4 +1,4 @@
-package com.shashank.notification_service.NotificationStrategy;
+package com.shashank.notification_service.NotificationStrategy.CoreServices;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;

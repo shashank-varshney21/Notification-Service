@@ -2,6 +2,7 @@ server:
   port: 8084
   servlet:
     context-path: /api/v1/notification
+
 kafka:
   topic:
     notification: notification
@@ -44,6 +45,7 @@ spring:
           auth: true
           starttls:
             enable: true
+
 eureka:
   client:
     service-url:
@@ -54,3 +56,14 @@ eureka:
     prefer-ip-address: true
     lease-renewable-interval-in-seconds: 10
     lease-expiration-duration-in-seconds: 30
+
+resilience4j:
+  retry:
+    configs:
+      default:
+        maxRetryAttempts: 3
+        waitDuration: 10s
+    instances:
+      notificationRetry:
+        baseConfig: default
+        waitDuration: 200ms
